@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LayoutFooter"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/default_navbar"
+    android:maxHeight="60dp"
+    android:minHeight="60dp"
+    tools:context=".FragmentNavbar">
+
+    <ImageButton
+        android:id="@+id/CameraButton"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:src="@drawable/camera" />
+
+    <ImageButton
+        android:id="@+id/LocationButton"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:src="@drawable/location" />
+
+    <ImageButton
+        android:id="@+id/RestaurantButton"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:src="@drawable/restaurant" />
+
+    <ImageButton
+        android:id="@+id/CartButton"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:src="@drawable/cart" />
+</LinearLayout>
