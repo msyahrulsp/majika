@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="16dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#901C18">
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="276dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/camera"
+            android:text="Makanan"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/itemPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp50.000"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="@id/itemName"
+            app:layout_constraintTop_toBottomOf="@+id/itemName" />
+
+        <TextView
+            android:id="@+id/itemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Jumlah"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/itemName"
+            app:layout_constraintTop_toBottomOf="@+id/itemPrice" />
+
+        <Button
+            android:id="@+id/minusButton"
+            android:layout_width="@dimen/box_size_width"
+            android:layout_height="@dimen/box_size_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="monospace"
+            android:text="-"
+
+            android:textColor="#901C18"
+            android:textSize="28sp"
+            app:layout_constraintStart_toEndOf="@id/itemCount"
+            app:layout_constraintTop_toBottomOf="@id/itemPrice" />
+
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="@dimen/box_size_width"
+            android:layout_height="@dimen/box_size_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="monospace"
+            android:text="+"
+
+            android:textColor="#901C18"
+            android:textSize="28sp"
+            app:layout_constraintStart_toEndOf="@id/itemCount"
+            app:layout_constraintTop_toBottomOf="@id/itemPrice" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
