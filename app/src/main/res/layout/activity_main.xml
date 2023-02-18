@@ -36,16 +36,16 @@
 <!--            app:layout_constraintBottom_toBottomOf="@id/container"-->
 <!--            app:navGraph="@navigation/nav_graph" />-->
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/CartFragment"
-            android:name="com.example.majika.cart.FragmentCart"
-            android:layout_width="380dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/NavbarFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/HeaderFragment"
-            tools:layout="@layout/cart_card" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/CartFragment"
+        android:name="com.example.majika.cart.FragmentCart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/NavbarFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HeaderFragment"
+        tools:layout="@layout/cart_card" />
 
 <!--        <androidx.recyclerview.widget.RecyclerView-->
 <!--            android:id="@+id/recyclerView"-->

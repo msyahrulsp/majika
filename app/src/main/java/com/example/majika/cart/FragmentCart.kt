@@ -1,17 +1,18 @@
-package com.example.majika
+package com.example.majika.cart
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.majika.cart.CartItem
 import com.example.majika.databinding.FragmentCartBinding
 
 class FragmentCart : Fragment() {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private lateinit var cartAdapter: CartAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,7 @@ class FragmentCart : Fragment() {
         _binding = null
     }
 
-    private fun chooseLayout() {
+    fun chooseLayout() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val itemList = ArrayList<CartItem>()
@@ -47,6 +48,10 @@ class FragmentCart : Fragment() {
 //        itemList.add(CartItem("item 5", 50000,5))
 //        itemList.add(CartItem("item 6", 50000,6))
 
-        recyclerView.adapter = CartAdapter(itemList)
+        cartAdapter = CartAdapter(itemList, binding)
+        recyclerView.adapter = cartAdapter
+
+
     }
+
 }
