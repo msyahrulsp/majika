@@ -1,8 +1,10 @@
 package com.example.majika.cart
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.databinding.FragmentCartBinding
@@ -12,23 +14,33 @@ class FragmentCart : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var cartAdapter: CartAdapter
+    private val viewModel: CartViewModel by viewModels()
+    private var CartList = ArrayList<CartItem>()
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setHasOptionsMenu(true)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        Log.d("FragmentCart", "Fragmencart created!")
         _binding = FragmentCartBinding.inflate(inflater, container, false)
+        // Observe the currentScrambledWord LiveData.
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.recyclerView
+//
+        viewModel.currentCartList.observe(viewLifecycleOwner) { LiveData ->
+            CartList = LiveData as ArrayList<CartItem>
+        }
+        CartList = viewModel.currentCartList.value as ArrayList<CartItem>
         chooseLayout()
     }
 
@@ -37,20 +49,12 @@ class FragmentCart : Fragment() {
         _binding = null
     }
 
-    fun chooseLayout() {
+    private fun chooseLayout() {
+
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val itemList = ArrayList<CartItem>()
-        itemList.add(CartItem("Item 1", 50000,5))
-        itemList.add(CartItem("Item 2", 50000,1))
-//        itemList.add(CartItem("Item 3", 50000,5))
-//        itemList.add(CartItem("Item 4", 50000,5))
-//        itemList.add(CartItem("item 5", 50000,5))
-//        itemList.add(CartItem("item 6", 50000,6))
-
-        cartAdapter = CartAdapter(itemList, binding)
+        cartAdapter = CartAdapter(CartList, binding)
         recyclerView.adapter = cartAdapter
-
 
     }
 
