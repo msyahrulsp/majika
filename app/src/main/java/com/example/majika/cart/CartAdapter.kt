@@ -1,6 +1,5 @@
 package com.example.majika.cart
 
-import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,16 +73,25 @@ class CartAdapter(private val itemList:ArrayList<CartItem>, private val fragment
 //        setTotalPrice(item.price, item.count)
 
         holder.minusButton.setOnClickListener{
-            if (item.count == 1) {
-                itemList.remove(item)
+            try{
+                if (item.count == 1) {
+                    itemList.remove(item)
+
+                    fragmentCartBinding.total.text = getTotalPrize()
+                    notifyDataSetChanged()
+
+                }else{
+                    item.count = item.count - 1
+                    holder.count.text = (item.count).toString()
+                    fragmentCartBinding.total.text = getTotalPrize()
+                    notifyItemChanged(position)
+                }
 
 
-                notifyItemChanged(position)
-            }else{
-                item.count = item.count - 1
-                holder.count.text = (item.count).toString()
-                notifyItemChanged(position)
+            } catch (e : Exception){
+                println("ERROR>>>$e")
             }
+
 
         }
         fragmentCartBinding.total.text = getTotalPrize()
