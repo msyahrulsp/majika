@@ -1,31 +1,23 @@
 package com.example.majika.cart
 
-import android.util.Log
-import androidx.annotation.NonNull
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.majika.model.Menu
+import com.example.majika.model.MenuDao
+import kotlinx.coroutines.flow.Flow
 
-class CartViewModel : ViewModel() {
+class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
+    fun fullSchedule(): Flow<List<Menu>> = menuDao.findAll()
 
-    private val _cartList = ArrayList<CartItem>()
-    private val _cartListLiveData = MutableLiveData<MutableList<CartItem>>()
+}
 
+class CartViewModelFactory(private  val menuDao : MenuDao) : ViewModelProvider.Factory {
 
-    val currentCartList: MutableLiveData<MutableList<CartItem>>
-        get() = _cartListLiveData
-
-    init {
-        addCartItem(CartItem("Sushi", 3000, 1))
-    }
-
-    fun <T> MutableLiveData<T>.notifyObserver() {
-        this.value = this.value
-    }
-
-    private fun addCartItem(cartItem: CartItem) {
-        _cartList.add(cartItem)
-        _cartListLiveData.value = _cartList
-        _cartListLiveData.notifyObserver()
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return CartViewModel(menuDao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
