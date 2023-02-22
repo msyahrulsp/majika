@@ -54,6 +54,11 @@ class FragmentNavbar : Fragment() {
             cartBtn.setImageResource(R.drawable.cart)
         }
 
+        currentPage = "CAMERA"
+        updateViewModelPage("CAMERA")
+        camBtn.setImageResource(R.drawable.camera_active)
+        replaceFragment(FragmentTwibbon())
+
         camBtn.setOnClickListener{
             if (currentPage != "CAMERA"){
                 currentPage = "CAMERA"
@@ -69,8 +74,8 @@ class FragmentNavbar : Fragment() {
                 updateViewModelPage("LOCATION")
                 resetNavbarIcons()
                 locBtn.setImageResource(R.drawable.location_active)
+                replaceFragment(BranchFragment())
             }
-            replaceFragment(BranchFragment());
         }
         restaurantBtn.setOnClickListener{
             if (currentPage != "RESTAURANT"){
@@ -78,8 +83,8 @@ class FragmentNavbar : Fragment() {
                 updateViewModelPage("RESTAURANT")
                 resetNavbarIcons()
                 restaurantBtn.setImageResource(R.drawable.restaurant_active)
+                replaceFragment(MenuFragment())
             }
-            replaceFragment(MenuFragment())
         }
         cartBtn.setOnClickListener{
             if (currentPage != "CART"){
@@ -87,8 +92,8 @@ class FragmentNavbar : Fragment() {
                 updateViewModelPage("CART")
                 resetNavbarIcons()
                 cartBtn.setImageResource(R.drawable.cart_active)
+                replaceFragment(FragmentCart())
             }
-            replaceFragment(FragmentCart())
         }
 
         return view

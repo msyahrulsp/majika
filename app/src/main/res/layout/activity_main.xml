@@ -16,37 +16,24 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_header" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/NavbarFragment"
-            android:name="com.example.majika.FragmentNavbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout="@layout/fragment_navbar" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/NavbarFragment"
+        android:name="com.example.majika.FragmentNavbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_navbar" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/NavbarFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HeaderFragment"
-        tools:layout="@layout/fragment_navbar">
-
-<!--        <androidx.fragment.app.FragmentContainerView-->
-<!--            android:id="@+id/PageFragment"-->
-<!--            android:name="com.example.majika.fragments.FragmentQr"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/NavbarFragment"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/HeaderFragment"-->
-<!--            tools:layout="@layout/fragment_qr" />-->
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/HeaderFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
