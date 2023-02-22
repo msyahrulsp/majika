@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         retrofitClient.getMenu().enqueue(object : Callback<APIResponse<Menu>> {
             override fun onResponse(call: Call<APIResponse<Menu>>, response: Response<APIResponse<Menu>>) {
                 if (response.isSuccessful) {
-                    val data = response.body()
+                    val data = response.body()?.data
                     Log.d("Data", data.toString())
                 }
             }

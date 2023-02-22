@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Menu::class], version = 1)
+@Database(entities = [Menu::class], version = 2)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun menuDao(): MenuDao
@@ -20,7 +20,7 @@ abstract class AppDatabase: RoomDatabase() {
                     context,
                     AppDatabase::class.java,
                     "app_database")
-                    .allowMainThreadQueries().build()
+                    .allowMainThreadQueries().fallbackToDestructiveMigration().build()
                 INSTANCE = instance
 
                 instance
