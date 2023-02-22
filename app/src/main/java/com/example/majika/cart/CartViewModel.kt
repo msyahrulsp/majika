@@ -2,8 +2,8 @@ package com.example.majika.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.majika.model.Menu
-import com.example.majika.model.MenuDao
+import com.example.majika.models.Menu
+import com.example.majika.models.MenuDao
 import kotlinx.coroutines.flow.Flow
 
 class CartViewModel(private val menuDao : MenuDao) : ViewModel() {

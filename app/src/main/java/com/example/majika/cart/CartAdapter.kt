@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.majika.databinding.CartCardBinding
 import com.example.majika.databinding.FragmentCartBinding
-import com.example.majika.model.Menu
-import com.example.majika.model.MenuDao
+import com.example.majika.models.Menu
 import java.text.NumberFormat
 import java.util.*
 

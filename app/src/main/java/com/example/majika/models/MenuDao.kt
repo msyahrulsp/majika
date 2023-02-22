@@ -1,4 +1,4 @@
-package com.example.majika.model
+package com.example.majika.models
 
 import androidx.room.Dao
 import androidx.room.Query

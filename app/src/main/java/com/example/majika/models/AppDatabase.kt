@@ -1,4 +1,4 @@
-package com.example.majika.model
+package com.example.majika.models
 
 import android.content.Context
 import androidx.room.Database
