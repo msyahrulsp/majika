@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.FragmentTwibbon">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <androidx.camera.view.PreviewView
+            android:id="@+id/ViewFinder"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center">
+        </androidx.camera.view.PreviewView>
+        <ImageView
+            android:id="@+id/ImagePreview"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:layout_alignTop="@id/ViewFinder"
+            android:layout_alignBottom="@id/ViewFinder"
+            android:layout_alignLeft="@id/ViewFinder"
+            android:layout_alignRight="@id/ViewFinder"
+            android:scaleType="fitXY"
+        />
+        <ImageView
+            android:id="@+id/TwibbonLayout"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:layout_alignTop="@id/ViewFinder"
+            android:layout_alignBottom="@id/ViewFinder"
+            android:layout_alignLeft="@id/ViewFinder"
+            android:layout_alignRight="@id/ViewFinder"
+            android:scaleType="fitXY"
+            android:src="@drawable/shinaa_1"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/CaptureButton"
+        android:layout_width="123dp"
+        android:layout_height="77dp"
+        android:gravity="center|center_horizontal"
+        android:layout_gravity="center"
+        android:text="capture" />
+
+
+</LinearLayout>
