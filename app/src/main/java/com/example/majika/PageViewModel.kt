@@ -9,4 +9,7 @@ class PageViewModel : ViewModel(){
         MutableLiveData<String>()
     }
 
+    val cameraPermission: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
 }

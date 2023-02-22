@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.majika.cart.FragmentCart
 import com.example.majika.fragments.BranchFragment
 import com.example.majika.fragments.MenuFragment
+import com.example.majika.fragments.FragmentTwibbon
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +60,7 @@ class FragmentNavbar : Fragment() {
                 updateViewModelPage("CAMERA")
                 resetNavbarIcons()
                 camBtn.setImageResource(R.drawable.camera_active)
+                replaceFragment(FragmentTwibbon())
             }
         }
         locBtn.setOnClickListener{

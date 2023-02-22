@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/HeaderFragment"
         android:name="com.example.majika.FragmentHeader"
@@ -27,15 +26,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout="@layout/fragment_navbar" />
 
-<!--        <androidx.fragment.app.FragmentContainerView-->
-<!--            android:id="@+id/nav_host_fragment"-->
-<!--            android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:defaultNavHost="true"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/container"-->
-<!--            app:navGraph="@navigation/nav_graph" />-->
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -43,6 +33,20 @@
         app:layout_constraintBottom_toTopOf="@id/NavbarFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HeaderFragment" />
+        app:layout_constraintTop_toBottomOf="@id/HeaderFragment"
+        tools:layout="@layout/fragment_navbar">
+
+<!--        <androidx.fragment.app.FragmentContainerView-->
+<!--            android:id="@+id/PageFragment"-->
+<!--            android:name="com.example.majika.fragments.FragmentQr"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/NavbarFragment"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/HeaderFragment"-->
+<!--            tools:layout="@layout/fragment_qr" />-->
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
