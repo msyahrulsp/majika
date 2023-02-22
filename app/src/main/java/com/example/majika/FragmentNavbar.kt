@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.majika.cart.FragmentCart
 import com.example.majika.fragments.BranchFragment
@@ -54,10 +55,10 @@ class FragmentNavbar : Fragment() {
             cartBtn.setImageResource(R.drawable.cart)
         }
 
-        currentPage = "CAMERA"
-        updateViewModelPage("CAMERA")
-        camBtn.setImageResource(R.drawable.camera_active)
-        replaceFragment(FragmentTwibbon())
+        currentPage = "CART"
+        updateViewModelPage("CART")
+        cartBtn.setImageResource(R.drawable.cart_active)
+        replaceFragment(FragmentCart())
 
         camBtn.setOnClickListener{
             if (currentPage != "CAMERA"){
@@ -78,9 +79,9 @@ class FragmentNavbar : Fragment() {
             }
         }
         restaurantBtn.setOnClickListener{
-            if (currentPage != "RESTAURANT"){
-                currentPage = "RESTAURANT"
-                updateViewModelPage("RESTAURANT")
+            if (currentPage != "MENU"){
+                currentPage = "MENU"
+                updateViewModelPage("MENU")
                 resetNavbarIcons()
                 restaurantBtn.setImageResource(R.drawable.restaurant_active)
                 replaceFragment(MenuFragment())
