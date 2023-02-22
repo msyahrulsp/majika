@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
+import com.example.majika.cart.FragmentCart
+import com.example.majika.fragments.BranchFragment
+import com.example.majika.fragments.MenuFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +68,7 @@ class FragmentNavbar : Fragment() {
                 resetNavbarIcons()
                 locBtn.setImageResource(R.drawable.location_active)
             }
+            replaceFragment(BranchFragment());
         }
         restaurantBtn.setOnClickListener{
             if (currentPage != "RESTAURANT"){
@@ -73,6 +77,7 @@ class FragmentNavbar : Fragment() {
                 resetNavbarIcons()
                 restaurantBtn.setImageResource(R.drawable.restaurant_active)
             }
+            replaceFragment(MenuFragment())
         }
         cartBtn.setOnClickListener{
             if (currentPage != "CART"){
@@ -81,9 +86,16 @@ class FragmentNavbar : Fragment() {
                 resetNavbarIcons()
                 cartBtn.setImageResource(R.drawable.cart_active)
             }
+            replaceFragment(FragmentCart())
         }
 
         return view
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 
     companion object {
