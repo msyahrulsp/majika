@@ -18,11 +18,14 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toTopOf="@id/total_card"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/total_card"
@@ -37,10 +40,11 @@
             app:layout_constraintStart_toStartOf="@id/recycler_view">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/total_cart_layout"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="#FFF4E7"
-                >
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/total_text"
@@ -49,8 +53,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/cart_total"
-                    android:textSize="20sp"
                     android:textColor="#000000"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.487" />
@@ -63,8 +67,8 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/cart_total"
-                    android:textSize="30sp"
                     android:textColor="#000000"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/total_text"
@@ -76,16 +80,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="#901C18"
                     android:fontFamily="monospace"
                     android:text="@string/cart_pay"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#901C18"
                     android:textSize="28sp"
-                    android:layout_marginEnd="16dp"
                     app:layout_constraintBaseline_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

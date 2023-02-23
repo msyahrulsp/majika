@@ -49,7 +49,7 @@ class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
 
                 cartAdapter.submitList(it)
                 binding.total.text = cartAdapter.getTotalPrice(it)
-                binding.bayarButton.isVisible = binding.total.text != "Rp0"
+                binding.totalCartLayout.isVisible = binding.total.text != "Rp0"
             }
         }
 
@@ -68,5 +68,6 @@ class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
+        fragmentTransaction.addToBackStack(null)
     }
 }

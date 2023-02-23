@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -28,6 +29,7 @@ import androidx.fragment.app.activityViewModels
 class MenuFragment : Fragment() {
     private lateinit var adapter: MenuRowAdapter
     lateinit var mainRecyclerView: RecyclerView
+    lateinit var spinner: ProgressBar
     private var data: List<Section> = listOf()
     private val viewModel: CartViewModel by activityViewModels {
         CartViewModelFactory(
@@ -66,6 +68,7 @@ class MenuFragment : Fragment() {
             }
         })
 
+        spinner = view.findViewById(R.id.progressBar)
         mainRecyclerView = view.findViewById(R.id.recyclerview_menu_main)
         mainRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = MenuRowAdapter(context!!, listOf(), viewModel)
@@ -93,6 +96,7 @@ class MenuFragment : Fragment() {
                             Section("Foods", foods),
                             Section("Drinks", drinks)
                         )
+                        spinner.visibility = View.GONE
                         mainRecyclerView.adapter = MenuRowAdapter(context!!, data, viewModel)
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()

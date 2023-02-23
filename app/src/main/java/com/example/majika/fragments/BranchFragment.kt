@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ import retrofit2.Response
 class BranchFragment : Fragment() {
     lateinit var adapter: BranchAdapter
     lateinit var branchRecyclerView: RecyclerView
+    lateinit var spinner: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,8 @@ class BranchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        spinner = view.findViewById(R.id.progressBar)
         branchRecyclerView = view.findViewById(R.id.recyclerview_branch)
         branchRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = BranchAdapter(context!!, listOf())
@@ -46,6 +50,7 @@ class BranchFragment : Fragment() {
                 if (response.isSuccessful) {
                     val branchList = response.body()?.data
                     if (branchList != null) {
+                        spinner.visibility = View.GONE
                         branchRecyclerView.adapter = BranchAdapter(context!!, branchList)
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
