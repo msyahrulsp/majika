@@ -23,7 +23,7 @@ class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val viewModel: CartViewModel by activityViewModels {
         CartViewModelFactory(
-            (activity?.application as CartApplication).database.menuDao()
+            (activity?.application as CartApplication)
         )
     }
 

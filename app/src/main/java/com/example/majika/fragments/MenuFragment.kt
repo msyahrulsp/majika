@@ -31,7 +31,7 @@ class MenuFragment : Fragment() {
     private var data: List<Section> = listOf()
     private val viewModel: CartViewModel by activityViewModels {
         CartViewModelFactory(
-            (activity?.application as CartApplication).database.menuDao()
+            (activity?.application as CartApplication)
         )
     }
 

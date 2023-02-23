@@ -40,12 +40,6 @@ import retrofit2.Response
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentQr.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentQr(private val totalPrice: String, val fragmentNavbar: FragmentNavbar) : Fragment(){
     private lateinit var viewModel: PageViewModel
     private lateinit var fragmentContext: Context
@@ -60,7 +54,7 @@ class FragmentQr(private val totalPrice: String, val fragmentNavbar: FragmentNav
     lateinit var mainHandler: Handler
     private val cartViewModel: CartViewModel by activityViewModels {
         CartViewModelFactory(
-            (activity?.application as CartApplication).database.menuDao()
+            (activity?.application as CartApplication)
         )
     }
 

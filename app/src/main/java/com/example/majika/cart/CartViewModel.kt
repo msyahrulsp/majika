@@ -1,17 +1,21 @@
 package com.example.majika.cart
 
+import android.app.Application
 import androidx.lifecycle.*
+import com.example.majika.models.AppDatabase
 import com.example.majika.models.Menu
 import com.example.majika.models.MenuDao
+import com.example.majika.repository.CartRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
+class CartViewModel(application : Application) : ViewModel() {
 
     // Cache all items form the database using LiveData.
-    val allItems: LiveData<List<Menu>> = menuDao.getCart().asLiveData()
+    private val cartRepository : CartRepository = CartRepository(AppDatabase.getDatabase(application).menuDao())
+    private var readAll : LiveData<List<Menu>> = cartRepository.getCart().asLiveData()
 
-    fun getCartItems(): Flow<List<Menu>> = menuDao.getCart()
+    fun getCartItems(): Flow<List<Menu>> = cartRepository.getCart()
 
     fun updateItem(name : String, newQuantity: Int) {
         if (newQuantity == 0){
@@ -27,33 +31,33 @@ class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
 
     fun deleteAll(){
         viewModelScope.launch {
-            menuDao.deleteAll()
+            cartRepository.deleteAll()
         }
     }
-    fun getQuantity(name : String) : Int = menuDao.findQuantity(name)
+    fun getQuantity(name : String) : Int = cartRepository.findQuantity(name)
     private fun updateQuantity(name: String, qty: Int) {
         viewModelScope.launch {
-            menuDao.addQuantity(name, qty)
+            cartRepository.addQuantity(name, qty)
         }
     }
     private fun deleteItem(name: String) {
         viewModelScope.launch {
-            menuDao.deleteCart(name)
+            cartRepository.deleteCart(name)
         }
     }
     private fun addItem(menu: Menu) {
         viewModelScope.launch {
-            menuDao.insertCart(menu)
+            cartRepository.insertCart(menu)
         }
     }
 }
 
-class CartViewModelFactory(private  val menuDao : MenuDao) : ViewModelProvider.Factory {
+class CartViewModelFactory(private  val application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return CartViewModel(menuDao) as T
+            return CartViewModel(application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
