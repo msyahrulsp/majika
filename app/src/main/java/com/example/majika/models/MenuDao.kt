@@ -12,9 +12,12 @@ interface MenuDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCart(menu: Menu)
 
-    @Query("DELETE FROM Menu  WHERE id=:itemID")
-    suspend fun deleteCart(itemID: Int)
+    @Query("DELETE FROM Menu  WHERE name=:itemName")
+    suspend fun deleteCart(itemName : String)
 
-    @Query("UPDATE Menu SET sold=:count WHERE id=:itemID")
-    fun addQuantity(count: Int, itemID : Int)
+    @Query("UPDATE Menu SET qty=:count WHERE name=:itemName")
+    fun addQuantity(itemName : String, count: Int)
+
+    @Query("SELECT qty FROM Menu WHERE name=:itemName")
+    fun findQuantity(itemName : String) : Int
 }

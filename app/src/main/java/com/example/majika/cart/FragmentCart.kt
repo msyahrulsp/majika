@@ -7,7 +7,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.majika.R
 import com.example.majika.databinding.FragmentCartBinding
+import com.example.majika.fragments.FragmentQr
 import kotlinx.coroutines.launch
 
 class FragmentCart : Fragment() {
@@ -38,16 +40,30 @@ class FragmentCart : Fragment() {
 
         recyclerView.adapter = cartAdapter
         lifecycle.coroutineScope.launch {
-            viewModel.getCartItems().collect() {
+            viewModel.getCartItems().collect {
 
                 cartAdapter.submitList(it)
                 binding.total.text = cartAdapter.getTotalPrice(it)
             }
         }
 
+        binding.bayarButton.setOnClickListener {
+            replaceFragment(FragmentQr())
+        }
+
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+//        (requireActivity() as MainActivity).showHideNavHead(false)
+
+        fragmentTransaction.commit()
+//        (requireActivity() as MainActivity).showHideNavHead(false)
     }
 }

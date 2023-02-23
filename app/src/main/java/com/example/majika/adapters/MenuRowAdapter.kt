@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
+import com.example.majika.cart.CartViewModel
 import com.example.majika.models.Menu
 import com.example.majika.utils.Section
 
-class MenuRowAdapter(val context: Context, val sectionList: List<Section>): RecyclerView.Adapter<MenuRowAdapter.ViewHolder>() {
+class MenuRowAdapter(val context: Context, private val sectionList: List<Section>, val viewModel : CartViewModel): RecyclerView.Adapter<MenuRowAdapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var foodType: TextView
         var recyclerView: RecyclerView
@@ -35,10 +36,10 @@ class MenuRowAdapter(val context: Context, val sectionList: List<Section>): Recy
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.foodType.text = sectionList[position].getHeaderTitle()
         d("Data", holder.foodType.text.toString())
-        val section: Section = sectionList.get(position)
-        var items: List<Menu> = section.getItems()
+        val section: Section = sectionList[position]
+        val items: List<Menu> = section.getItems()
 
-        val menuCardAdapter = MenuCardAdapter(context, items)
+        val menuCardAdapter = MenuCardAdapter(context, items, viewModel)
         holder.recyclerView.layoutManager = LinearLayoutManager(context)
         holder.recyclerView.adapter = menuCardAdapter
     }

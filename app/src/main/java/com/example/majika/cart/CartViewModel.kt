@@ -8,35 +8,42 @@ import kotlinx.coroutines.launch
 
 class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
 
-
     // Cache all items form the database using LiveData.
     val allItems: LiveData<List<Menu>> = menuDao.getCart().asLiveData()
 
     fun getCartItems(): Flow<List<Menu>> = menuDao.getCart()
 
-fun updateItem(
-    newQuantity: Int,
-    id: Int
-) {
-    if (newQuantity == 0){
-        deleteItem(id)
-    } else{
-        updateQuantity(newQuantity, id)
-    }
-}
-
-
-    /**
-     * Launching a new coroutine to update an item in a non-blocking way
-     */
-    private fun updateQuantity(count : Int, id : Int) {
-        viewModelScope.launch {
-            menuDao.addQuantity(count, id)
+    fun updateItem(
+        name : String,
+        newQuantity: Int
+    ) {
+        if (newQuantity == 0){
+            deleteItem(name)
+        } else{
+            updateQuantity(name, newQuantity)
         }
     }
-    private fun deleteItem(id: Int) {
+
+    fun addItemToCart(
+        menu: Menu
+    ){
+        addItem(menu)
+    }
+
+    fun getQuantity(name : String) : Int = menuDao.findQuantity(name)
+    private fun updateQuantity(name: String, qty: Int) {
         viewModelScope.launch {
-            menuDao.deleteCart(id)
+            menuDao.addQuantity(name, qty)
+        }
+    }
+    private fun deleteItem(name: String) {
+        viewModelScope.launch {
+            menuDao.deleteCart(name)
+        }
+    }
+    private fun addItem(menu: Menu) {
+        viewModelScope.launch {
+            menuDao.insertCart(menu)
         }
     }
 }

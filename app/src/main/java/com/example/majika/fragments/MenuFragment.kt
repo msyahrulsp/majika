@@ -7,10 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
 import com.example.majika.adapters.MenuRowAdapter
+import com.example.majika.cart.CartApplication
+import com.example.majika.cart.CartViewModel
+import com.example.majika.cart.CartViewModelFactory
 import com.example.majika.models.APIResponse
 import com.example.majika.models.Menu
 import com.example.majika.utils.RetrofitClient
@@ -20,9 +24,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MenuFragment : Fragment() {
-    lateinit var adapter: MenuRowAdapter
+    private lateinit var adapter: MenuRowAdapter
     lateinit var mainRecyclerView: RecyclerView
     private var data: List<Section> = listOf()
+    private val viewModel: CartViewModel by activityViewModels {
+        CartViewModelFactory(
+            (activity?.application as CartApplication).database.menuDao()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,14 +59,14 @@ class MenuFragment : Fragment() {
                         })
                     }
                 }
-                mainRecyclerView.adapter = MenuRowAdapter(context!!, filteredData)
+                mainRecyclerView.adapter = MenuRowAdapter(context!!, filteredData, viewModel)
                 return false
             }
         })
 
         mainRecyclerView = view.findViewById(R.id.recyclerview_menu_main)
         mainRecyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MenuRowAdapter(context!!, listOf())
+        adapter = MenuRowAdapter(context!!, listOf(), viewModel)
         mainRecyclerView.adapter = adapter
         getMenu()
     }
@@ -81,14 +90,14 @@ class MenuFragment : Fragment() {
                         Section("Foods", foods),
                         Section("Drinks", drinks)
                     )
-                    mainRecyclerView.adapter = MenuRowAdapter(context!!, data)
+                    mainRecyclerView.adapter = MenuRowAdapter(context!!, data, viewModel)
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Menu>>, t: Throwable) {
                 d("Error", t.message.toString())
                 val list: List<Section> = listOf()
-                mainRecyclerView.adapter = MenuRowAdapter(context!!, list)
+                mainRecyclerView.adapter = MenuRowAdapter(context!!, list, viewModel)
             }
         })
     }

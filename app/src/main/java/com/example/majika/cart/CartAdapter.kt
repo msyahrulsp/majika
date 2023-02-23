@@ -36,10 +36,10 @@ class CartAdapter(
 
         fun bind(menu: Menu) {
             binding.itemName.text = menu.name
-            binding.itemCount.text = menu.sold.toString()
+            binding.itemCount.text = menu.qty.toString()
             binding.itemPrice.text = menu.price.toString().toCurrencyFormat()
-            binding.plusButton.setOnClickListener{ viewModel.updateItem(menu.sold + 1, menu.id) }
-            binding.minusButton.setOnClickListener{ viewModel.updateItem(menu.sold - 1, menu.id) }
+            binding.plusButton.setOnClickListener{ viewModel.updateItem(menu.name,menu.qty + 1) }
+            binding.minusButton.setOnClickListener{ viewModel.updateItem(menu.name,menu.qty - 1) }
         }
 
         private fun String.toCurrencyFormat(): String {
@@ -74,7 +74,7 @@ class CartAdapter(
         var sum = 0
 
         menu.forEach{
-            sum += it.price * it.sold
+            sum += it.price * it.qty
         }
 
         val localeID = Locale("in", "ID")
