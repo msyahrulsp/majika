@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
@@ -67,28 +68,33 @@ class MenuFragment : Fragment() {
         retrofitClient.getMenu().enqueue(object: Callback<APIResponse<Menu>> {
             override fun onResponse(call: Call<APIResponse<Menu>>, response: Response<APIResponse<Menu>>) {
                 if (response.isSuccessful) {
-                    var foods: List<Menu> = listOf()
-                    var drinks: List<Menu> = listOf()
                     val menuList = response.body()?.data
-                    menuList?.forEach {
-                        if (it.type == "Food") {
-                            foods += it
-                        } else {
-                            drinks += it
+                    if (menuList != null) {
+                        var foods: List<Menu> = listOf()
+                        var drinks: List<Menu> = listOf()
+                        menuList.forEach {
+                            if (it.type == "Food") {
+                                foods += it
+                            } else {
+                                drinks += it
+                            }
                         }
+                        data = listOf(
+                            Section("Foods", foods),
+                            Section("Drinks", drinks)
+                        )
+                        mainRecyclerView.adapter = MenuRowAdapter(context!!, data)
+                    } else {
+                        Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
                     }
-                    data = listOf(
-                        Section("Foods", foods),
-                        Section("Drinks", drinks)
-                    )
-                    mainRecyclerView.adapter = MenuRowAdapter(context!!, data)
+                } else {
+                    Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Menu>>, t: Throwable) {
                 d("Error", t.message.toString())
-                val list: List<Section> = listOf()
-                mainRecyclerView.adapter = MenuRowAdapter(context!!, list)
+                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
