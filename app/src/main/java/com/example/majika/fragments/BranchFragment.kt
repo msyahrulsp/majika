@@ -49,16 +49,25 @@ class BranchFragment : Fragment() {
                         branchRecyclerView.adapter = BranchAdapter(context!!, branchList)
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
+                        replaceFragment(ErrorFragment("No Data", "Maaf, tapi datanya kosong :("))
                     }
                 } else {
                     Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
+                    replaceFragment(ErrorFragment("Error", response.message()))
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Branch>>, t: Throwable) {
                 d("Error", t.message.toString())
                 Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                replaceFragment(ErrorFragment("Error", t.message.toString()))
             }
         })
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragment_container, fragment)
+        fragmentTransaction?.commit()
     }
 }

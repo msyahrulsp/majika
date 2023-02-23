@@ -22,4 +22,6 @@
     <string name="qr_scan">Scan the payment QR Code</string>
     <string name="qr_info">{QR Value goes here if it scans one}</string>
     <string name="twibbon_capture">capture</string>
+    <string name="error">Error</string>
+    <string name="error_desc">Error Description</string>
 </resources>

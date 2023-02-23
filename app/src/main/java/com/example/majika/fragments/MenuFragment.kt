@@ -70,7 +70,6 @@ class MenuFragment : Fragment() {
         mainRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = MenuRowAdapter(context!!, listOf(), viewModel)
         mainRecyclerView.adapter = adapter
-        d("MenuFragment", "onViewCreated")
         getMenu()
     }
 
@@ -94,20 +93,34 @@ class MenuFragment : Fragment() {
                             Section("Foods", foods),
                             Section("Drinks", drinks)
                         )
-                        d("MenuFragment", "onResponse: $data")
                         mainRecyclerView.adapter = MenuRowAdapter(context!!, data, viewModel)
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
+                        emptyDataFragment(ErrorFragment("No Data", "Maaf, tapi datanya kosong :("))
                     }
                 } else {
                     Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
+                    replaceFragment(ErrorFragment("Error", response.message()))
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Menu>>, t: Throwable) {
                 d("Error", t.message.toString())
                 Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                replaceFragment(ErrorFragment("Error", t.message.toString()))
             }
         })
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragment_container, fragment)
+        fragmentTransaction?.commit()
+    }
+
+    private fun emptyDataFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.recyclerview_menu_main, fragment)
+        fragmentTransaction?.commit()
     }
 }
