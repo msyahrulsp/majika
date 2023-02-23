@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
@@ -69,6 +70,7 @@ class MenuFragment : Fragment() {
         mainRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = MenuRowAdapter(context!!, listOf(), viewModel)
         mainRecyclerView.adapter = adapter
+        d("MenuFragment", "onViewCreated")
         getMenu()
     }
 
@@ -92,6 +94,7 @@ class MenuFragment : Fragment() {
                             Section("Foods", foods),
                             Section("Drinks", drinks)
                         )
+                        d("MenuFragment", "onResponse: $data")
                         mainRecyclerView.adapter = MenuRowAdapter(context!!, data, viewModel)
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()

@@ -12,12 +12,9 @@ import com.example.majika.fragments.BranchFragment
 import com.example.majika.fragments.MenuFragment
 import com.example.majika.fragments.FragmentTwibbon
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PAGE = ""
 
 class FragmentNavbar : Fragment() {
-    // TODO: Rename and change types of parameters
     private var currentPage: String? = null
     private lateinit var viewModel : PageViewModel
 
@@ -54,10 +51,12 @@ class FragmentNavbar : Fragment() {
             cartBtn.setImageResource(R.drawable.cart)
         }
 
-        currentPage = Page.CART.page
-        updateViewModelPage(Page.CART.page)
-        cartBtn.setImageResource(R.drawable.cart_active)
-        replaceFragment(FragmentCart())
+        if (currentPage == null) {
+            currentPage = Page.CART.page
+            updateViewModelPage(Page.CART.page)
+            cartBtn.setImageResource(R.drawable.cart_active)
+            replaceFragment(FragmentCart())
+        }
 
         camBtn.setOnClickListener{
             if (currentPage != Page.CAMERA.page){
@@ -99,7 +98,7 @@ class FragmentNavbar : Fragment() {
         return view
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
