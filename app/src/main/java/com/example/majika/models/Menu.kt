@@ -14,6 +14,6 @@ data class Menu(
     @NonNull @ColumnInfo(name = "price") val price: Int,
     @NonNull @ColumnInfo(name = "sold") val sold: Int,
     @NonNull @ColumnInfo(name = "type") val type: String,
-
+    @NonNull @ColumnInfo(name = "qty") var qty: Int = 0,
     )
 

@@ -36,7 +36,7 @@ class MenuRowAdapter(val context: Context, val sectionList: List<Section>): Recy
         holder.foodType.text = sectionList[position].getHeaderTitle()
         d("Data", holder.foodType.text.toString())
         val section: Section = sectionList.get(position)
-        val items: List<Menu> = section.getItems()
+        var items: List<Menu> = section.getItems()
 
         val menuCardAdapter = MenuCardAdapter(context, items)
         holder.recyclerView.layoutManager = LinearLayoutManager(context)

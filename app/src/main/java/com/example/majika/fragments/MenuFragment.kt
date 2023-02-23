@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
@@ -33,6 +34,27 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val search = view.findViewById<SearchView>(R.id.searchView)
+        search.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                var filteredData: List<Section> = data
+                if (newText != null) {
+                    filteredData = data.map {
+                        Section(it.getHeaderTitle(), it.getItems().filter { menu ->
+                            menu.name.contains(newText, true)
+                        })
+                    }
+                }
+                mainRecyclerView.adapter = MenuRowAdapter(context!!, filteredData)
+                return false
+            }
+        })
+
         mainRecyclerView = view.findViewById(R.id.recyclerview_menu_main)
         mainRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = MenuRowAdapter(context!!, listOf())
@@ -60,7 +82,6 @@ class MenuFragment : Fragment() {
                         Section("Drinks", drinks)
                     )
                     mainRecyclerView.adapter = MenuRowAdapter(context!!, data)
-                    d("Data", data.toString())
                 }
             }
 

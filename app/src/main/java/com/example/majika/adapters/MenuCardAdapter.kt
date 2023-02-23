@@ -19,7 +19,8 @@ class MenuCardAdapter(val context: Context, val menuList: List<Menu>): RecyclerV
         var menuSold: TextView
         var menuDesc: TextView
         var menuQty: TextView
-        var qty: Int
+        var plusButton: TextView
+        var minusButton: TextView
 
         init {
             menuName = itemView.findViewById(R.id.menuName)
@@ -27,7 +28,8 @@ class MenuCardAdapter(val context: Context, val menuList: List<Menu>): RecyclerV
             menuSold = itemView.findViewById(R.id.menuSold)
             menuDesc = itemView.findViewById(R.id.menuDesc)
             menuQty = itemView.findViewById(R.id.menuQty)
-            qty = 0
+            plusButton = itemView.findViewById(R.id.plusButton)
+            minusButton = itemView.findViewById(R.id.minusButton)
         }
     }
 
@@ -43,9 +45,37 @@ class MenuCardAdapter(val context: Context, val menuList: List<Menu>): RecyclerV
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.menuName.text = menuList[position].name
         holder.menuPrice.text = NumberFormat.getCurrencyInstance(Locale("id", "ID")).format(menuList[position].price)
-        holder.menuSold.text = menuList[position].sold.toString()
+        holder.menuSold.text = convertToCompactFormat(menuList[position].sold) + " Terjual"
         holder.menuDesc.text = menuList[position].description
-        holder.menuQty.text = holder.qty.toString()
+        holder.menuQty.text = menuList[position].qty.toString()
+        if (menuList[position].qty == 0) {
+            holder.minusButton.visibility = View.GONE
+        }
+
+        holder.plusButton.setOnClickListener {
+            menuList[position].qty++
+            var tempInt: Int = menuList[position].qty
+            holder.menuQty.text = tempInt.toString()
+            holder.minusButton.visibility = View.VISIBLE
+        }
+
+        holder.minusButton.setOnClickListener {
+            menuList[position].qty--
+            var tempInt: Int = menuList[position].qty
+            holder.menuQty.text = tempInt.toString()
+            if (menuList[position].qty == 0) {
+                holder.minusButton.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun convertToCompactFormat(number: Int): String {
+        return when {
+            number < 1000 -> number.toString()
+            number < 1000000 -> "${number / 1000}RB+"
+            number < 1000000000 -> "${number / 1000000}JT+"
+            else -> "${number / 1000000000}M+"
+        }
     }
 
 }

@@ -11,7 +11,7 @@ class Section {
         this.items = items
     }
 
-    fun getHeaderTitle(): String? {
+    fun getHeaderTitle(): String {
         return headerTitle
     }
 
