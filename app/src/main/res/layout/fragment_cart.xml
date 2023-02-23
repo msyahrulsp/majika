@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".cart.FragmentCart">
+    tools:context=".fragments.FragmentCart">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -81,6 +81,7 @@
                     android:textColor="#FFFFFF"
                     android:backgroundTint="#901C18"
                     android:textSize="28sp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintBaseline_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

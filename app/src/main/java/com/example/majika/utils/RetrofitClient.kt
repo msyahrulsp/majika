@@ -2,6 +2,7 @@ package com.example.majika.utils
 
 import com.example.majika.interfaces.IBranch
 import com.example.majika.interfaces.IMenu
+import com.example.majika.interfaces.IQr
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -24,6 +25,10 @@ class RetrofitClient {
 
         fun getMenu(): IMenu {
             return retrofit.create(IMenu::class.java)
+        }
+
+        fun getPaymentStatus(): IQr{
+            return retrofit.create(IQr::class.java)
         }
     }
 }

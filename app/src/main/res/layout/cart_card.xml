@@ -42,10 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/menu_qty"
+            android:layout_marginBottom="20dp"
+            android:text="Total"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/itemName"
-            app:layout_constraintTop_toBottomOf="@+id/itemPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/itemPrice"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <Button
             android:id="@+id/minusButton"
@@ -67,7 +69,7 @@
 
         <TextView
             android:id="@+id/itemCount"
-            android:layout_width="wrap_content"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:gravity="center"

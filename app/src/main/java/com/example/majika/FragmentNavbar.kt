@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
-import com.example.majika.cart.FragmentCart
+import com.example.majika.fragments.FragmentCart
 import com.example.majika.fragments.BranchFragment
 import com.example.majika.fragments.MenuFragment
 import com.example.majika.fragments.FragmentTwibbon

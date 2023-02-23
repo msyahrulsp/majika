@@ -1,4 +1,4 @@
-package com.example.majika.cart
+package com.example.majika.fragments
 
 import android.os.Bundle
 import android.view.*
@@ -8,8 +8,11 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
+import com.example.majika.adapters.CartAdapter
+import com.example.majika.cart.CartApplication
+import com.example.majika.cart.CartViewModel
+import com.example.majika.cart.CartViewModelFactory
 import com.example.majika.databinding.FragmentCartBinding
-import com.example.majika.fragments.FragmentQr
 import kotlinx.coroutines.launch
 
 class FragmentCart : Fragment() {
@@ -48,7 +51,7 @@ class FragmentCart : Fragment() {
         }
 
         binding.bayarButton.setOnClickListener {
-            replaceFragment(FragmentQr())
+            replaceFragment(FragmentQr(binding.total.text as String))
         }
 
 
@@ -61,9 +64,6 @@ class FragmentCart : Fragment() {
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
-//        (requireActivity() as MainActivity).showHideNavHead(false)
-
         fragmentTransaction.commit()
-//        (requireActivity() as MainActivity).showHideNavHead(false)
     }
 }

@@ -64,10 +64,8 @@ class MenuCardAdapter(val context: Context, private val menuList: List<Menu>, va
 
 
             if (tempInt == 1){
-                println("Insert" + menuList[position].name + " => $tempInt ")
                 viewModel.addItemToCart(menuList[position])
             }else{
-                println("Update" + menuList[position].name + " => $tempInt ")
                 viewModel.updateItem(menuList[position].name, tempInt)
             }
         }

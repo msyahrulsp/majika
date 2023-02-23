@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +11,7 @@
         android:id="@+id/ViewFinder"
         android:layout_width="320dp"
         android:layout_height="320dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center">
     </androidx.camera.view.PreviewView>
 
@@ -19,14 +21,34 @@
         android:layout_height="wrap_content"
         android:text="@string/qr_scan"
         android:gravity="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+
+        android:textColor="#901C18"/>
+
+    <TextView
+        android:id="@+id/qr_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "Total : "
+        android:gravity="center"
+        android:textSize="20sp"
+
+        android:textColor="#901C18"/>
 
     <TextView
         android:id="@+id/qr_output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/qr_info" />
+        android:layout_marginTop="30dp"
+        android:text="@string/qr_info"
+        android:textColor="#901C18"/>
 
+    <ImageView
+        android:id="@+id/status_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/success" />
 
 </LinearLayout>

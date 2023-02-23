@@ -1,10 +1,11 @@
-package com.example.majika.cart
+package com.example.majika.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.majika.cart.CartViewModel
 import com.example.majika.databinding.CartCardBinding
 import com.example.majika.databinding.FragmentCartBinding
 import com.example.majika.models.Menu

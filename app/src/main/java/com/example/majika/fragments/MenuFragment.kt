@@ -22,6 +22,7 @@ import com.example.majika.utils.Section
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.fragment.app.activityViewModels
 
 class MenuFragment : Fragment() {
     private lateinit var adapter: MenuRowAdapter
