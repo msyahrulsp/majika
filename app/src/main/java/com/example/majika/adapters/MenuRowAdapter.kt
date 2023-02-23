@@ -1,7 +1,6 @@
 package com.example.majika.adapters
 
 import android.content.Context
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,6 @@ class MenuRowAdapter(val context: Context, private val sectionList: List<Section
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.foodType.text = sectionList[position].getHeaderTitle()
-        d("Data", holder.foodType.text.toString())
         val section: Section = sectionList[position]
         val items: List<Menu> = section.getItems()
 

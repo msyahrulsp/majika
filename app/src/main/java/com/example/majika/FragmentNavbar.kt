@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.majika.cart.FragmentCart
 import com.example.majika.fragments.BranchFragment
@@ -55,42 +54,42 @@ class FragmentNavbar : Fragment() {
             cartBtn.setImageResource(R.drawable.cart)
         }
 
-        currentPage = "CART"
-        updateViewModelPage("CART")
+        currentPage = Page.CART.page
+        updateViewModelPage(Page.CART.page)
         cartBtn.setImageResource(R.drawable.cart_active)
         replaceFragment(FragmentCart())
 
         camBtn.setOnClickListener{
-            if (currentPage != "CAMERA"){
-                currentPage = "CAMERA"
-                updateViewModelPage("CAMERA")
+            if (currentPage != Page.CAMERA.page){
+                currentPage = Page.CAMERA.page
+                updateViewModelPage(Page.CAMERA.page)
                 resetNavbarIcons()
                 camBtn.setImageResource(R.drawable.camera_active)
                 replaceFragment(FragmentTwibbon())
             }
         }
         locBtn.setOnClickListener{
-            if (currentPage != "LOCATION"){
-                currentPage = "LOCATION"
-                updateViewModelPage("LOCATION")
+            if (currentPage != Page.LOCATION.page){
+                currentPage = Page.LOCATION.page
+                updateViewModelPage(Page.LOCATION.page)
                 resetNavbarIcons()
                 locBtn.setImageResource(R.drawable.location_active)
                 replaceFragment(BranchFragment())
             }
         }
         restaurantBtn.setOnClickListener{
-            if (currentPage != "MENU"){
-                currentPage = "MENU"
-                updateViewModelPage("MENU")
+            if (currentPage != Page.RESTAURANT.page){
+                currentPage = Page.RESTAURANT.page
+                updateViewModelPage(Page.RESTAURANT.page)
                 resetNavbarIcons()
                 restaurantBtn.setImageResource(R.drawable.restaurant_active)
                 replaceFragment(MenuFragment())
             }
         }
         cartBtn.setOnClickListener{
-            if (currentPage != "CART"){
-                currentPage = "CART"
-                updateViewModelPage("CART")
+            if (currentPage != Page.CART.page){
+                currentPage = Page.CART.page
+                updateViewModelPage(Page.CART.page)
                 resetNavbarIcons()
                 cartBtn.setImageResource(R.drawable.cart_active)
                 replaceFragment(FragmentCart())
@@ -106,21 +105,7 @@ class FragmentNavbar : Fragment() {
         fragmentTransaction.commit()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param currentPage parameter_page.
-         * @return A new instance of fragment FragmentNavbar.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(currentPage: String) =
-            FragmentNavbar().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PAGE, currentPage)
-                }
-            }
+    private enum class Page(val page: String) {
+        CAMERA("TWIBBON"), LOCATION("CABANG RESTORAN"), RESTAURANT("MENU"), CART("KERANJANG")
     }
 }

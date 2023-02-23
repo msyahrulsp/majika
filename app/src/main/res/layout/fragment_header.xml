@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@color/default_navbar"
+    android:baselineAligned="false"
     tools:context=".FragmentHeader">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Sample Page"
+            android:text="@string/header_sample"
             android:textColor="#000000"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="10dp"
-            android:text="Temp"
+            android:text="@string/header_temperature"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20sp"

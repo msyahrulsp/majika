@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
@@ -44,14 +45,19 @@ class BranchFragment : Fragment() {
             override fun onResponse(call: Call<APIResponse<Branch>>, response: Response<APIResponse<Branch>>) {
                 if (response.isSuccessful) {
                     val branchList = response.body()?.data
-                    branchRecyclerView.adapter = BranchAdapter(context!!, branchList!!)
+                    if (branchList != null) {
+                        branchRecyclerView.adapter = BranchAdapter(context!!, branchList)
+                    } else {
+                        Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Branch>>, t: Throwable) {
                 d("Error", t.message.toString())
-                val branchList = listOf<Branch>()
-                branchRecyclerView.adapter = BranchAdapter(context!!, branchList)
+                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

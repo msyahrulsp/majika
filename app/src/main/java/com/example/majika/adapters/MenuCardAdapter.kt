@@ -52,7 +52,7 @@ class MenuCardAdapter(val context: Context, private val menuList: List<Menu>, va
         holder.menuQty.text = menuList[position].qty.toString()
 //        holder.menuQty.text = viewModel.getQuantity(menuList[position].name).toString()
         if (menuList[position].qty == 0) {
-            holder.minusButton.visibility = View.GONE
+            holder.minusButton.visibility = View.INVISIBLE
         }
 
         holder.plusButton.setOnClickListener {
@@ -77,7 +77,7 @@ class MenuCardAdapter(val context: Context, private val menuList: List<Menu>, va
             val tempInt: Int = menuList[position].qty
             holder.menuQty.text = tempInt.toString()
             if (menuList[position].qty == 0) {
-                holder.minusButton.visibility = View.GONE
+                holder.minusButton.visibility = View.INVISIBLE
             }
             viewModel.updateItem(menuList[position].name, tempInt)
         }
