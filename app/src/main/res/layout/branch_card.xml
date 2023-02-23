@@ -59,7 +59,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/button"
             android:text="Maps"
-            android:textColor="#000000"
+            android:textColor="#901C18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
