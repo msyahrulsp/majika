@@ -13,10 +13,7 @@ class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
 
     fun getCartItems(): Flow<List<Menu>> = menuDao.getCart()
 
-    fun updateItem(
-        name : String,
-        newQuantity: Int
-    ) {
+    fun updateItem(name : String, newQuantity: Int) {
         if (newQuantity == 0){
             deleteItem(name)
         } else{
@@ -24,12 +21,15 @@ class CartViewModel(private val menuDao : MenuDao) : ViewModel() {
         }
     }
 
-    fun addItemToCart(
-        menu: Menu
-    ){
+    fun addItemToCart(menu: Menu){
         addItem(menu)
     }
 
+    fun deleteAll(){
+        viewModelScope.launch {
+            menuDao.deleteAll()
+        }
+    }
     fun getQuantity(name : String) : Int = menuDao.findQuantity(name)
     private fun updateQuantity(name: String, qty: Int) {
         viewModelScope.launch {

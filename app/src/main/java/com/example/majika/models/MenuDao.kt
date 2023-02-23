@@ -20,4 +20,7 @@ interface MenuDao {
 
     @Query("SELECT qty FROM Menu WHERE name=:itemName")
     fun findQuantity(itemName : String) : Int
+
+    @Query("DELETE FROM Menu")
+    suspend fun deleteAll()
 }

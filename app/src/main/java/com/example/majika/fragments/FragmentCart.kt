@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.majika.FragmentNavbar
 import com.example.majika.R
 import com.example.majika.adapters.CartAdapter
 import com.example.majika.cart.CartApplication
@@ -15,7 +16,7 @@ import com.example.majika.cart.CartViewModelFactory
 import com.example.majika.databinding.FragmentCartBinding
 import kotlinx.coroutines.launch
 
-class FragmentCart : Fragment() {
+class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -39,7 +40,7 @@ class FragmentCart : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val cartAdapter = CartAdapter(binding, viewModel)
+        val cartAdapter = CartAdapter(viewModel)
 
         recyclerView.adapter = cartAdapter
         lifecycle.coroutineScope.launch {
@@ -51,7 +52,7 @@ class FragmentCart : Fragment() {
         }
 
         binding.bayarButton.setOnClickListener {
-            replaceFragment(FragmentQr(binding.total.text as String))
+            replaceFragment(FragmentQr(binding.total.text as String, fragmentNavbar))
         }
 
 

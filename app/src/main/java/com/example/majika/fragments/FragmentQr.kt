@@ -18,9 +18,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.majika.FragmentNavbar
 import com.example.majika.PageViewModel
 import com.example.majika.R
+import com.example.majika.cart.CartApplication
+import com.example.majika.cart.CartViewModel
+import com.example.majika.cart.CartViewModelFactory
 import com.example.majika.models.Qr
 import com.example.majika.utils.RetrofitClient
 import com.google.common.util.concurrent.ListenableFuture
@@ -41,7 +46,7 @@ import java.util.concurrent.Executors
  * Use the [FragmentQr.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentQr(private  val totalPrice: String) : Fragment(){
+class FragmentQr(private val totalPrice: String, val fragmentNavbar: FragmentNavbar) : Fragment(){
     private lateinit var viewModel: PageViewModel
     private lateinit var fragmentContext: Context
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
@@ -53,6 +58,11 @@ class FragmentQr(private  val totalPrice: String) : Fragment(){
     private lateinit var qr_output: TextView
     private lateinit var status_image: ImageView
     lateinit var mainHandler: Handler
+    private val cartViewModel: CartViewModel by activityViewModels {
+        CartViewModelFactory(
+            (activity?.application as CartApplication).database.menuDao()
+        )
+    }
 
     private val scanQrTask = object : Runnable {
         override fun run() {
@@ -117,20 +127,6 @@ class FragmentQr(private  val totalPrice: String) : Fragment(){
         }
         return view
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment FragmentQr.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() =
-            FragmentQr("0")
-    }
-
     fun scanQrCode() {
         val bitmap: Bitmap = viewFinder.bitmap ?: Bitmap.createBitmap(
             viewFinder.width,
@@ -180,16 +176,12 @@ class FragmentQr(private  val totalPrice: String) : Fragment(){
                         status_image.setImageResource(R.drawable.success)
 
                         mainHandler.postDelayed({
-                            if (activity != null) {
-                                activity!!.supportFragmentManager.beginTransaction()
-                                    .replace(
-                                        R.id.fragment_container,
-                                        MenuFragment()
-                                    )
-                                    .commit()
-                            }
+                            qr_output.text="Pembayaran Berhasil"
+                            fragmentNavbar.backToMenu()
+                            cartViewModel.deleteAll()
                         }, 5000)
                     } else {
+                        qr_output.text="Pembayaran Gagal"
                         status_image.setImageResource(R.drawable.failed)
                     }
 

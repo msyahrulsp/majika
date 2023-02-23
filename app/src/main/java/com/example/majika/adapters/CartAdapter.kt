@@ -7,17 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.cart.CartViewModel
 import com.example.majika.databinding.CartCardBinding
-import com.example.majika.databinding.FragmentCartBinding
 import com.example.majika.models.Menu
 import java.text.NumberFormat
 import java.util.*
 
 
 class CartAdapter(
-    private val fragmentCartBinding: FragmentCartBinding,
     private val viewModel : CartViewModel
     ) : ListAdapter<Menu, CartAdapter.ItemViewHolder>(DiffCallback) {
-
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Menu>() {
@@ -31,7 +28,7 @@ class CartAdapter(
         }
     }
 
-    class ItemViewHolder( private var binding: CartCardBinding, var viewModel: CartViewModel) : RecyclerView.ViewHolder(binding.root) {
+    class ItemViewHolder(private var binding: CartCardBinding, var viewModel: CartViewModel) : RecyclerView.ViewHolder(binding.root) {
 //        @SuppressLint("SimpleDateFormat")
 
 

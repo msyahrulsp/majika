@@ -55,7 +55,7 @@ class FragmentNavbar : Fragment() {
             currentPage = Page.CART.page
             updateViewModelPage(Page.CART.page)
             cartBtn.setImageResource(R.drawable.cart_active)
-            replaceFragment(FragmentCart())
+            replaceFragment(FragmentCart(this))
         }
 
         camBtn.setOnClickListener{
@@ -91,7 +91,7 @@ class FragmentNavbar : Fragment() {
                 updateViewModelPage(Page.CART.page)
                 resetNavbarIcons()
                 cartBtn.setImageResource(R.drawable.cart_active)
-                replaceFragment(FragmentCart())
+                replaceFragment(FragmentCart(this))
             }
         }
 
@@ -106,5 +106,16 @@ class FragmentNavbar : Fragment() {
 
     private enum class Page(val page: String) {
         CAMERA("TWIBBON"), LOCATION("CABANG RESTORAN"), RESTAURANT("MENU"), CART("KERANJANG")
+    }
+    fun backToMenu() {
+        if (currentPage != Page.RESTAURANT.page) {
+            currentPage = Page.RESTAURANT.page
+            updateViewModelPage(Page.RESTAURANT.page)
+            view?.findViewById<ImageButton>(R.id.RestaurantButton)
+                ?.setImageResource(R.drawable.restaurant_active)
+            view?.findViewById<ImageButton>(R.id.CartButton)
+                ?.setImageResource(R.drawable.cart)
+            replaceFragment(MenuFragment())
+        }
     }
 }
