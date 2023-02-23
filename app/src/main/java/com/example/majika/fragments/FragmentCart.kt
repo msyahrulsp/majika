@@ -2,6 +2,7 @@ package com.example.majika.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
@@ -48,6 +49,7 @@ class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
 
                 cartAdapter.submitList(it)
                 binding.total.text = cartAdapter.getTotalPrice(it)
+                binding.bayarButton.isVisible = binding.total.text != "Rp0"
             }
         }
 
