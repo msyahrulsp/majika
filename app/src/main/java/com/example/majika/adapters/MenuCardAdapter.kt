@@ -49,7 +49,7 @@ class MenuCardAdapter(val context: Context, val menuList: List<Menu>): RecyclerV
         holder.menuDesc.text = menuList[position].description
         holder.menuQty.text = menuList[position].qty.toString()
         if (menuList[position].qty == 0) {
-            holder.minusButton.visibility = View.GONE
+            holder.minusButton.visibility = View.INVISIBLE
         }
 
         holder.plusButton.setOnClickListener {
@@ -64,7 +64,7 @@ class MenuCardAdapter(val context: Context, val menuList: List<Menu>): RecyclerV
             var tempInt: Int = menuList[position].qty
             holder.menuQty.text = tempInt.toString()
             if (menuList[position].qty == 0) {
-                holder.minusButton.visibility = View.GONE
+                holder.minusButton.visibility = View.INVISIBLE
             }
         }
     }

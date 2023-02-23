@@ -2,7 +2,13 @@
     <string name="app_name">Majika</string>
     <string name="makanan">Makanan</string>
     <string name="minuman">Minuman</string>
+    <string name="header_sample">Sample Page</string>
+    <string name="header_temperature">Temp</string>
     <string name="search_placeholder">Cari Makanan</string>
+    <string name="branch_cabang">Cabang</string>
+    <string name="branch_address">Address</string>
+    <string name="branch_phone">Phone</string>
+    <string name="branch_maps">Maps</string>
     <string name="menu_name">Name</string>
     <string name="menu_price">Price</string>
     <string name="menu_sold">Sold</string>
@@ -10,4 +16,10 @@
     <string name="menu_qty">Qty</string>
     <string name="button_plus">+</string>
     <string name="button_minus">-</string>
+    <string name="cart_total">Total</string>
+    <string name="cart_pay">Bayar</string>
+    <string name="content_description">Hmm, yes. This is a text</string>
+    <string name="qr_scan">Scan the payment QR Code</string>
+    <string name="qr_info">{QR Value goes here if it scans one}</string>
+    <string name="twibbon_capture">capture</string>
 </resources>
