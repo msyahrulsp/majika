@@ -16,7 +16,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.majika.PageViewModel
+import com.example.majika.viewmodel.PageViewModel
 import com.example.majika.R
 import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutorService
@@ -44,7 +44,7 @@ class FragmentTwibbon : Fragment() {
         super.onCreate(savedInstanceState)
         testContext = requireContext()
 
-        viewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[PageViewModel::class.java]
 
         arguments?.let {
               cameraFreeze = it.getBoolean(ARG_CAM_FREEZE)
@@ -61,7 +61,7 @@ class FragmentTwibbon : Fragment() {
         val view = inflater.inflate(R.layout.fragment_twibbon, container, false)
 
         // set preview to the viewfinder
-        viewFinder = view.findViewById<PreviewView>(R.id.ViewFinder)
+        viewFinder = view.findViewById(R.id.ViewFinder)
         val imagePreview = view.findViewById<ImageView>(R.id.ImagePreview)
         imagePreview.visibility = View.GONE
         val camBtn = view.findViewById<Button>(R.id.CaptureButton)
@@ -70,14 +70,14 @@ class FragmentTwibbon : Fragment() {
                 cameraFreeze = false
                 imagePreview.visibility = View.GONE
                 viewFinder.visibility = View.VISIBLE
-                camBtn.setText("Capture")
+                camBtn.text = "Capture"
             }
             else {
                 cameraFreeze = true
                 imagePreview.visibility = View.VISIBLE
                 viewFinder.visibility = View.GONE
-                camBtn.setText("Retake")
-                imagePreview.setBackground(BitmapDrawable(getResources(), viewFinder.getBitmap()))
+                camBtn.text = "Retake"
+                imagePreview.background = BitmapDrawable(resources, viewFinder.bitmap)
             }
         }
 

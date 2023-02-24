@@ -1,4 +1,4 @@
-package com.example.majika
+package com.example.majika.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
-import com.example.majika.fragments.FragmentCart
-import com.example.majika.fragments.BranchFragment
-import com.example.majika.fragments.MenuFragment
-import com.example.majika.fragments.FragmentTwibbon
+import com.example.majika.viewmodel.PageViewModel
+import com.example.majika.R
 
 private const val ARG_PAGE = ""
 

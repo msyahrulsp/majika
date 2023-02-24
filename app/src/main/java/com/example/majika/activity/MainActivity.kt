@@ -1,4 +1,4 @@
-package com.example.majika
+package com.example.majika.activity
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.majika.databinding.ActivityMainBinding
 import android.Manifest
 import android.widget.Toast
+import com.example.majika.viewmodel.PageViewModel
 
 
 class MainActivity : AppCompatActivity() {

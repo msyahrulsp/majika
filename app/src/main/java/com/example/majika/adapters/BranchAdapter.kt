@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
 import com.example.majika.models.Branch
 
-class BranchAdapter(val context: Context, val branchList: List<Branch>): RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
+class BranchAdapter(val context: Context, private val branchList: List<Branch>): RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var branchName: TextView
@@ -28,7 +28,7 @@ class BranchAdapter(val context: Context, val branchList: List<Branch>): Recycle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(context).inflate(R.layout.branch_card, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.branch_card, parent, false)
         return ViewHolder(itemView)
     }
 

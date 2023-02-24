@@ -1,4 +1,4 @@
-package com.example.majika.cart
+package com.example.majika.application
 
 import android.app.Application
 import com.example.majika.models.AppDatabase

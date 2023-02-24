@@ -8,12 +8,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.majika.FragmentNavbar
 import com.example.majika.R
 import com.example.majika.adapters.CartAdapter
-import com.example.majika.cart.CartApplication
-import com.example.majika.cart.CartViewModel
-import com.example.majika.cart.CartViewModelFactory
+import com.example.majika.application.CartApplication
+import com.example.majika.viewmodel.CartViewModel
+import com.example.majika.viewmodel.CartViewModelFactory
 import com.example.majika.databinding.FragmentCartBinding
 import kotlinx.coroutines.launch
 

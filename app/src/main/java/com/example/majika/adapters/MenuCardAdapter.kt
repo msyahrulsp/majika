@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
-import com.example.majika.cart.CartViewModel
 import com.example.majika.models.Menu
+import com.example.majika.viewmodel.CartViewModel
 import java.text.NumberFormat
 import java.util.*
 

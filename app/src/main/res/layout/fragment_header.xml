@@ -6,7 +6,7 @@
     android:layout_height="60dp"
     android:background="@color/default_navbar"
     android:baselineAligned="false"
-    tools:context=".FragmentHeader">
+    tools:context=".fragments.FragmentHeader">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

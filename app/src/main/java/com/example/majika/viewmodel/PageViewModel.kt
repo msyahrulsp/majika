@@ -1,4 +1,4 @@
-package com.example.majika
+package com.example.majika.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

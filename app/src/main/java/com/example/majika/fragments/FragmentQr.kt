@@ -20,12 +20,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.majika.FragmentNavbar
-import com.example.majika.PageViewModel
+import com.example.majika.viewmodel.PageViewModel
 import com.example.majika.R
-import com.example.majika.cart.CartApplication
-import com.example.majika.cart.CartViewModel
-import com.example.majika.cart.CartViewModelFactory
+import com.example.majika.application.CartApplication
+import com.example.majika.viewmodel.CartViewModel
+import com.example.majika.viewmodel.CartViewModelFactory
 import com.example.majika.models.Qr
 import com.example.majika.utils.RetrofitClient
 import com.google.common.util.concurrent.ListenableFuture
@@ -128,7 +127,7 @@ class FragmentQr(private val totalPrice: String, val fragmentNavbar: FragmentNav
             Bitmap.Config.ARGB_8888
         )
         val image = InputImage.fromBitmap(bitmap, 0)
-        val result = scanner.process(image)
+            scanner.process(image)
             .addOnSuccessListener { barcodes ->
                 // Task completed successfully
                 for (barcode in barcodes) {

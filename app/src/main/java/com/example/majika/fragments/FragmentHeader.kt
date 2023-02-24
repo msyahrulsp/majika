@@ -1,6 +1,5 @@
-package com.example.majika
+package com.example.majika.fragments
 
-import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -10,14 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.majika.viewmodel.PageViewModel
+import com.example.majika.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PAGE = ""
-
 class FragmentHeader : Fragment(), SensorEventListener {
     // TODO: Rename and change types of parameters
     private var currentPage: String? = null
@@ -31,7 +29,7 @@ class FragmentHeader : Fragment(), SensorEventListener {
             currentPage = it.getString(ARG_PAGE)
         }
 
-        viewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[PageViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -41,11 +39,13 @@ class FragmentHeader : Fragment(), SensorEventListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_header, container, false)
         val pageTxt = view.findViewById<TextView>(R.id.pageDetail)
-        temperature = view.findViewById<TextView>(R.id.temperature)
-        sensorManager = getSystemService(requireContext(), SensorManager::class.java)
+        temperature = view.findViewById(R.id.temperature)
+        sensorManager = ContextCompat.getSystemService(requireContext(), SensorManager::class.java)
 
         if (sensorManager != null) {
-            sensorManager!!.registerListener(this, sensorManager!!.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE), SensorManager.SENSOR_DELAY_NORMAL)
+            sensorManager!!.registerListener(this, sensorManager!!.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE),
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
         } else {
             temperature.text = "No sensor found"
         }
@@ -69,23 +69,5 @@ class FragmentHeader : Fragment(), SensorEventListener {
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
 
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param currentPage ARG_PAGE
-         * @return A new instance of fragment FragmentHeader.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(currentPage: String) =
-            FragmentHeader().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PAGE, currentPage)
-                }
-            }
     }
 }

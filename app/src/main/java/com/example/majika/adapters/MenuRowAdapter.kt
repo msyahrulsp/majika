@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
-import com.example.majika.cart.CartViewModel
 import com.example.majika.models.Menu
 import com.example.majika.utils.Section
+import com.example.majika.viewmodel.CartViewModel
 
 class MenuRowAdapter(val context: Context, private val sectionList: List<Section>, val viewModel : CartViewModel): RecyclerView.Adapter<MenuRowAdapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

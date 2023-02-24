@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/HeaderFragment"
-        android:name="com.example.majika.FragmentHeader"
+        android:name="com.example.majika.fragments.FragmentHeader"
         android:layout_width="0dp"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/NavbarFragment"
-        android:name="com.example.majika.FragmentNavbar"
+        android:name="com.example.majika.fragments.FragmentNavbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,10 +1,9 @@
-package com.example.majika.cart
+package com.example.majika.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.majika.models.AppDatabase
 import com.example.majika.models.Menu
-import com.example.majika.models.MenuDao
 import com.example.majika.repository.CartRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -13,7 +12,6 @@ class CartViewModel(application : Application) : ViewModel() {
 
     // Cache all items form the database using LiveData.
     private val cartRepository : CartRepository = CartRepository(AppDatabase.getDatabase(application).menuDao())
-    private var readAll : LiveData<List<Menu>> = cartRepository.getCart().asLiveData()
 
     fun getCartItems(): Flow<List<Menu>> = cartRepository.getCart()
 
@@ -53,7 +51,6 @@ class CartViewModel(application : Application) : ViewModel() {
 }
 
 class CartViewModelFactory(private  val application: Application) : ViewModelProvider.Factory {
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

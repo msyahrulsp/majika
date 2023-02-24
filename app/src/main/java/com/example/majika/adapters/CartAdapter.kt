@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.majika.cart.CartViewModel
 import com.example.majika.databinding.CartCardBinding
 import com.example.majika.models.Menu
+import com.example.majika.viewmodel.CartViewModel
 import java.text.NumberFormat
 import java.util.*
 
