@@ -45,6 +45,6 @@ Sebuah aplikasi Android yang dibuat oleh BAStian dan friends untuk membantu Doni
 
 | PIC                                   | Persiapan | Pengerjaaan |
 |---------------------------------------|-----------|-------------|
-| 13520054 Farrel Farandieka Fibriyanto | X         | X           |
-| 13520059 Suryanto                     | X         | X           |
-| 13520161 M Syahrul Surya Putra        | X         | X           |
+| 13520054 Farrel Farandieka Fibriyanto | 6         | 24          |
+| 13520059 Suryanto                     | 6         | 20          |
+| 13520161 M Syahrul Surya Putra        | 4         | 20           |
