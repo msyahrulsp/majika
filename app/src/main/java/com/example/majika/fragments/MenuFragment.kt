@@ -79,7 +79,7 @@ class MenuFragment : Fragment() {
         val retrofitClient = RetrofitClient.getMenu()
         retrofitClient.getMenu().enqueue(object: Callback<APIResponse<Menu>> {
             override fun onResponse(call: Call<APIResponse<Menu>>, response: Response<APIResponse<Menu>>) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful && isAdded) {
                     val menuList = response.body()?.data
                     if (menuList != null) {
                         var foods: List<Menu> = listOf()
@@ -101,16 +101,15 @@ class MenuFragment : Fragment() {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
                         emptyDataFragment(ErrorFragment("No Data", "Maaf, tapi datanya kosong :("))
                     }
-                } else {
-                    Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
-                    replaceFragment(ErrorFragment("Error", response.message()))
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Menu>>, t: Throwable) {
-                d("Error", t.message.toString())
-                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
-                replaceFragment(ErrorFragment("Error", t.message.toString()))
+                if (isAdded) {
+                    d("Error", t.message.toString())
+                    Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                    replaceFragment(ErrorFragment("Error", t.message.toString()))
+                }
             }
         })
     }

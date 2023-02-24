@@ -47,7 +47,7 @@ class BranchFragment : Fragment() {
         val retrofitClient = RetrofitClient.getBranch()
         retrofitClient.getBranch().enqueue(object: Callback<APIResponse<Branch>> {
             override fun onResponse(call: Call<APIResponse<Branch>>, response: Response<APIResponse<Branch>>) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful && isAdded) {
                     val branchList = response.body()?.data
                     if (branchList != null) {
                         spinner.visibility = View.GONE
@@ -56,16 +56,15 @@ class BranchFragment : Fragment() {
                         Toast.makeText(context, "No data found", Toast.LENGTH_LONG).show()
                         replaceFragment(ErrorFragment("No Data", "Maaf, tapi datanya kosong :("))
                     }
-                } else {
-                    Toast.makeText(context, "Error: ${response.message()}", Toast.LENGTH_LONG).show()
-                    replaceFragment(ErrorFragment("Error", response.message()))
                 }
             }
 
             override fun onFailure(call: Call<APIResponse<Branch>>, t: Throwable) {
-                d("Error", t.message.toString())
-                Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
-                replaceFragment(ErrorFragment("Error", t.message.toString()))
+                if (isAdded) {
+                    d("Error", t.message.toString())
+                    Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                    replaceFragment(ErrorFragment("Error", t.message.toString()))
+                }
             }
         })
     }
