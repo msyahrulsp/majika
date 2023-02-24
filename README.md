@@ -14,19 +14,19 @@ Sebuah aplikasi Android yang dibuat oleh BAStian dan friends untuk membantu Doni
 - ML Kit
 
 ## Screenshot
-- Halaman Twibbon
+- Halaman Twibbon<br>
 ![Halaman Twibbon](screenshot/twibbon.png)
 
-- Halaman Cabang Restoran
+- Halaman Cabang Restoran<br>
 ![Halaman Cabang Restoran](screenshot/cabang_restoran.png)
 
-- Halaman Menu
+- Halaman Menu<br>
 ![Halaman Menu](screenshot/menu.png)
 
-- Halaman Keranjang
+- Halaman Keranjang<br>
 ![Halaman Keranjang](screenshot/keranjang.png)
 
-- Halaman Pembayaran
+- Halaman Pembayaran<br>
 ![Halaman Pembayaran](screenshot/pembayaran.png)
 
 ## Pembagian Kerja
