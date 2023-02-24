@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.majika.R
 import com.example.majika.adapters.CartAdapter
 import com.example.majika.application.CartApplication
+import com.example.majika.databinding.FragmentCartBinding
 import com.example.majika.viewmodel.CartViewModel
 import com.example.majika.viewmodel.CartViewModelFactory
-import com.example.majika.databinding.FragmentCartBinding
 import kotlinx.coroutines.launch
 
 class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
@@ -55,12 +55,6 @@ class FragmentCart(private val fragmentNavbar: FragmentNavbar) : Fragment() {
         binding.bayarButton.setOnClickListener {
             replaceFragment(FragmentQr(binding.total.text as String, fragmentNavbar))
         }
-
-
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun replaceFragment(fragment: Fragment){
